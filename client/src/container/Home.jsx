@@ -6,7 +6,7 @@ import { HiMenu } from "react-icons/hi";
 import { AiFillCloseCircle } from "react-icons/ai";
 import logo from "../assets/logo.png";
 
-const Home = ({setCurrentId}) => {
+const Home = ({currentId,setCurrentId}) => {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   // useRef is like a “box” that can hold a mutable value in its .current property.
 
@@ -43,7 +43,7 @@ const Home = ({setCurrentId}) => {
           )}
         </div>
         <div className="pb-2  flex-1 bg-slate-700	" ref={scrollRef}>
-          <Jokes setCurrentId={setCurrentId} />
+          <Jokes currentId={currentId} setCurrentId={setCurrentId} />
           
         </div>
         

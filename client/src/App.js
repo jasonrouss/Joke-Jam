@@ -16,8 +16,10 @@ const App = () => {
   
   return (
     <Routes>
-      <Route path="/*" element={ <Home setCurrentId={setCurrentId}/>}/>
+      <Route path="/*" element={ <Home currentId={currentId} setCurrentId={setCurrentId}/>}/>
       <Route path="/create" element={ <CreateJoke currentId={currentId} setCurrentId={setCurrentId}/>}/>
+      <Route path="/create/:id" element={ <CreateJoke currentId={currentId} setCurrentId={setCurrentId}/>}/>
+
     </Routes>
   
   );

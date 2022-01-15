@@ -1,4 +1,5 @@
 import express from "express";
+import mongoose from "mongoose";
 
 import PostJokes from "../models/postJokes.js";
 const router = express.Router();
@@ -42,4 +43,30 @@ export const getJokes = async (req, res) => {
       res.status(409).json({ message: error.message });
     }
   };
+
+  export const updateJoke = async (req, res) => {
+    const { id } = req.params;
+    const { title, text, creator, category } = req.body;
+  
+    if (!mongoose.Types.ObjectId.isValid(id))
+      return res.status(404).send(`No post with id: ${id}`);
+  
+    const updatedJoke = { title, text, creator, category, _id: id };
+  
+    await PostJokes.findByIdAndUpdate(id, updatedJoke, { new: true });
+  
+    res.json(updateJoke);
+  };
+  
+
+  export const deleteJoke = async (req,res)=>{
+    const {id} = req.params
+    if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send(`No post with id: ${id}`);
+  
+    await PostJokes.findByIdAndRemove(id);
+  
+    res.json({message:'Post deleted successfully'})
+  
+  }
   export default router;
